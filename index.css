@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+main .transformed-viewport {
+    --ease: cubic-bezier(0, .75, .25, 1);
+    left: 0;
+    top: 0;
+    transition: left var(--ease) .3s, top var(--ease) .3s;
+}
+
+main > toolbar- {
+    grid-column: 1;
+    grid-row: 1;
+    width: 144px;
+    height: 100vh;
+    padding: 24px 0;
+    background: #aaa;
+    z-index: 1;
+}
+
+main > toolbar- > .field-container {
+    margin-bottom: 24px;
+}
+
+main > toolbar- input {
+    display: none;
+}
+main > toolbar- label {
+    display: block;
+}
+main > toolbar- input:checked + label {
+    color: #f00;
+}
+
+main > toolbar- > .size--container {
+    display: flex;
+    padding: 0 6px;
+    min-height: 40px;
+    text-align: center;
+}
+main > toolbar- > .size--container label {
+    flex: 1 0 auto;
+    display: flex; /* auto-center */
+}
+main > toolbar- > .size--container label > .circle {
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 #0007;
+    background: #0000;
+    transition: background .5s ease, box-shadow .5s ease;
+}
+main > toolbar- > .size--container label:hover > .circle {
+    background: #0002;
+}
+main > toolbar- > .size--container label:active > .circle {
+    background: #0004;
+}
+main > toolbar- > .size--container input:checked + label > .circle {
+    box-shadow: 0 0 0 4px #fff, 0 8px 16px 4px #0007, 0 0 0 calc(var(--size) / 2) #000 inset;
+}
+
+main > toolbar- > .color--container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 8px;
+    padding: 0 20px;
+    text-align: center;
+}
+main > toolbar- > .color--container label {
+    height: 32px;
+    display: inline-block;
+    opacity: .6;
+    transition: opacity .5s ease, filter .5s ease, box-shadow .5s ease;
+}
+main > toolbar- > .color--container label:hover {
+    opacity: 1;
+}
+main > toolbar- > .color--container label:active {
+    opacity: 1;
+    filter: brightness(60%);
+    box-shadow: 0 0 0 #fff, 0 0 0 #0007, 0 4px 16px #0007 inset;
+}
+main > toolbar- > .color--container input:checked + label {
+    opacity: 1;
+    box-shadow: 0 0 0 4px #fff, 0 8px 16px 4px #0007;
+    z-index: 1;
+    filter: none;
+    position: relative;
+}
+
+main > work-region {
+    height: 100vh;
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    background: #ccc;
+}
+
+main > work-region > * {
+    position: absolute;
+}
+
+main > work-region > canvas.paint {
+    top: 0;
+    left: 0;
+    opacity: .5;
+}
+
+noscript {
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    z-index: 1;
+    text-align: center;
+    background: #446;
+    color: #fff;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
